@@ -10,6 +10,8 @@ function App() {
   const [numberAllowed, setNumberAllowed] = useState(false);
   const [charAllowed, setCharAllowed] = useState(false);
 
+  const passwordRef = useRef(null);
+
   //create the logic for the password
   const generatePassword = useCallback(() => {
     let pass = "";
@@ -33,6 +35,7 @@ function App() {
 
   const copyPasswordToClipBoard = () => {
     window.navigator.clipboard.writeText(password);
+    passwordRef.current?.select();
   };
 
   //useEffect
@@ -51,7 +54,7 @@ function App() {
           className="ouline-none w-full py-1 px-3 bg-amber-50"
           placeholder="Password"
           readOnly
-          ref={password}
+          ref={passwordRef}
         />
         <button
           className="outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0"
